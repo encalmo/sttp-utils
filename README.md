@@ -1,4 +1,4 @@
-![Maven Central Version](https://img.shields.io/maven-central/v/org.encalmo/sttp-utils_3?style=for-the-badge&link=https%3A%2F%2Fcentral.sonatype.com%2Fartifact%2Forg.encalmo%2Fsttp-utils_3)
+<a href="https://central.sonatype.com/artifact/org.encalmo/sttp-utils_3" target="_blank">![Maven Central Version](https://img.shields.io/maven-central/v/org.encalmo/sttp-utils_3?style=for-the-badge)</a> <a href="https://encalmo.github.io/sttp-utils/scaladoc/org/encalmo/utils.html" target="_blank"><img alt="Scaladoc" src="https://img.shields.io/badge/docs-scaladoc-red?style=for-the-badge"></a>
 
 # sttp-utils
 
