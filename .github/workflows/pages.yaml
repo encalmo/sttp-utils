@@ -10,8 +10,6 @@ on:
 permissions:
   id-token: write # This is required for requesting the JWT
   contents: write # This is required for actions/checkout
-  packages: write
-  pull-requests: write 
   pages: write    # to deploy to Pages
 
 jobs:
@@ -20,7 +18,7 @@ jobs:
     steps:
       - id: release
         name: Create and upload new Github Pages content
-        uses: encalmo/create-new-release-action@1d628cea9866e2ebc2d1dc1a11d945d365272b73
+        uses: encalmo/create-new-release-action@v1.2
         with:
           tag-prefix: 'version'
           version-bump: 'keep'
