@@ -22,4 +22,4 @@ or with SCALA-CLI
 
 ## Examples
 
-See: [Example.scala](Example.scala)
+See: [Examples](SttpUtils.test.scala)
