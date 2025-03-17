@@ -22,4 +22,4 @@ or with SCALA-CLI
 
 ## Examples
 
-See: [Examples](SttpUtils.test.scala)
+See: [Examples](https://github.com/encalmo/sttp-utils/blob/main/SttpUtils.test.scala)
