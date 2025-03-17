@@ -13,6 +13,11 @@ on:
           - minor
           - patch
           - keep
+      pages-only:
+        type: boolean
+        description: 'Skip release, generate only Github Pages'
+        required: true
+        default: false
   # push:
   #   branches: [main]
   #   paths:
@@ -24,7 +29,7 @@ jobs:
     steps:
       - id: release
         name: Create and upload new release bundles
-        uses: encalmo/create-new-release-action@v1.1
+        uses: encalmo/create-new-release-action@88e687840ab332634253c5c7f879395ed5f7822c
         with:
           tag-prefix: 'version'
           version-bump: ${{ inputs.version-bump || 'patch' }}
@@ -33,3 +38,6 @@ jobs:
           sonatype-token: ${{ secrets.SONATYPE_TOKEN }}
           gpg-secret-key-base64: ${{ secrets.GPG_SECRET_KEY }}
           gpg-secret-key-id: ${{ secrets.GPG_SECRET_KEY_ID }}
+          pages-only: '${{ inputs.pages-only }}'
+          markdown-paths: 'README.md'
+          
