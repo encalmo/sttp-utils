@@ -29,7 +29,7 @@ jobs:
     steps:
       - id: release
         name: Create and upload new release bundles
-        uses: encalmo/create-new-release-action@6f6cf8e666676cb2f9055d4cfe2e63f7c7320b4c
+        uses: encalmo/create-new-release-action@1d628cea9866e2ebc2d1dc1a11d945d365272b73
         with:
           tag-prefix: 'version'
           version-bump: ${{ inputs.version-bump || 'patch' }}
