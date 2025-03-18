@@ -27,4 +27,24 @@ class SttpUtilsSpec extends munit.FunSuite {
     println(output3)
   }
 
+  test("SttpUtils should format http request and response") {
+
+    val request = basicRequest
+      .response(asStringAlways)
+      .get(
+        Uri.unsafeParse(
+          "https://index.scala-lang.org/api/v1/artifacts/com.softwaremill.sttp.client4/upickle_3/4.0.0-RC1"
+        )
+      )
+      .acceptEncoding("application/json")
+
+    val output1 = HttpFormatter.showRequest(request, Ansi.ansi(), masked = true)
+    println(output1)
+
+    val response = request.send(quick.backend)
+
+    val output3 = HttpFormatter.showResponse(response, Ansi.ansi())
+    println(output3)
+  }
+
 }

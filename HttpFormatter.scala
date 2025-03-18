@@ -117,42 +117,26 @@ object HttpFormatter {
   ): Ansi =
     (contentType, Option(body)) match {
       case (Some(ct), Some(json: ujson.Value)) if ct.contains("application/json") =>
-        if (json != Null)
-        then
-          if (hideAnsiColors)
-          then ansi.a(ujson.write(json))
-          else
-            JsonFormatter.prettyPrintWithAnsiColors(
-              json,
-              indentLevel = 1,
-              ansi = ansi
-            )
-        else ansi
+        formatJson(json, ansi)
 
       case (Some(ct), Some(StringBody(content, _, _))) if ct.contains("application/json") =>
         val json = JsonFormatter.parse(content)
-        if (json != Null)
-        then
-          if (hideAnsiColors)
-          then ansi.a(ujson.write(json))
-          else
-            JsonFormatter
-              .prettyPrintWithAnsiColors(json, indentLevel = 1, ansi = ansi)
-        else ansi
+        formatJson(json, ansi)
+
+      case (Some(ct), Some(content: String)) if ct.contains("application/json") =>
+        val json = JsonFormatter.parse(content)
+        formatJson(json, ansi)
 
       case (None, Some(StringBody(content, _, _))) if content.trim().startsWith("{") && content.trim().endsWith("}") =>
         val json = JsonFormatter.parse(content)
-        if (json != Null)
-        then
-          if (hideAnsiColors)
-          then ansi.a(ujson.write(json))
-          else
-            JsonFormatter
-              .prettyPrintWithAnsiColors(json, indentLevel = 1, ansi = ansi)
-        else ansi
+        formatJson(json, ansi)
 
       case (ct, Some(StringBody(content, encoding, contentType))) if content != null =>
         ansi.a(content)
+
+      case (None, Some(content: String)) if content.trim().startsWith("{") && content.trim().endsWith("}") =>
+        val json = JsonFormatter.parse(content)
+        formatJson(json, ansi)
 
       case (ct, Some(other)) if other != null =>
         ansi.a(other.toString())
@@ -160,6 +144,19 @@ object HttpFormatter {
       case _ =>
         ansi
     }
+
+  def formatJson(json: Value, ansi: Ansi): Ansi =
+    if (json != Null)
+    then
+      if (hideAnsiColors)
+      then ansi.a(ujson.write(json))
+      else
+        JsonFormatter.prettyPrintWithAnsiColors(
+          json,
+          indentLevel = 1,
+          ansi = ansi
+        )
+    else ansi
 
   private def colorOfResponse(statusCode: StatusCode): Color =
     if (statusCode.isSuccess) GREEN
