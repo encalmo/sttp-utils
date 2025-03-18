@@ -7,21 +7,21 @@ This Scala 3 library provides few extensions to the [sttp](https://github.com/so
 ## Dependencies
 
    - [Scala](https://www.scala-lang.org/) >= 3.3.5
-   - [script-utils 0.9.1](https://central.sonatype.com/artifact/org.encalmo/script-utils_3)
-   - [upickle-utils 0.9.9](https://central.sonatype.com/artifact/org.encalmo/upickle-utils_3)
-   - [jansi 2.4.1](https://central.sonatype.com/artifact/org.fusesource.jansi/jansi)
-   - [core ](https://central.sonatype.com/artifact/com.softwaremill.sttp.client4/core_3)
-   - [upickle ](https://central.sonatype.com/artifact/com.softwaremill.sttp.client4/upickle_3)
+   - org.encalmo [**script-utils** 0.9.1](https://central.sonatype.com/artifact/org.encalmo/script-utils_3)
+   - org.encalmo [**upickle-utils** 0.9.9](https://central.sonatype.com/artifact/org.encalmo/upickle-utils_3)
+   - org.fusesource.jansi [**jansi** 2.4.1](https://central.sonatype.com/artifact/org.fusesource.jansi/jansi)
+   - com.softwaremill.sttp.client4 [**core** 4.0.0-RC1](https://github.com/softwaremill/sttp)
+   - com.softwaremill.sttp.client4 [**upickle** 4.0.0-RC1](https://github.com/softwaremill/sttp)
 
 ## Usage
 
 Use with SBT
 
-    libraryDependencies += "org.encalmo" %% "sttp-utils" % "0.9.3"
+    libraryDependencies += "org.encalmo" %% "sttp-utils" % "0.9.4"
 
 or with SCALA-CLI
 
-    //> using dep org.encalmo::sttp-utils:0.9.3
+    //> using dep org.encalmo::sttp-utils:0.9.4
 
 ## Examples
 
