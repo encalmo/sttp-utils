@@ -128,6 +128,7 @@ object HttpFormatter {
               ansi = ansi
             )
         else ansi
+
       case (Some(ct), Some(StringBody(content, _, _))) if ct.contains("application/json") =>
         val json = JsonFormatter.parse(content)
         if (json != Null)
@@ -138,10 +139,24 @@ object HttpFormatter {
             JsonFormatter
               .prettyPrintWithAnsiColors(json, indentLevel = 1, ansi = ansi)
         else ansi
+
+      case (None, Some(StringBody(content, _, _))) if content.trim().startsWith("{") && content.trim().endsWith("}") =>
+        val json = JsonFormatter.parse(content)
+        if (json != Null)
+        then
+          if (hideAnsiColors)
+          then ansi.a(ujson.write(json))
+          else
+            JsonFormatter
+              .prettyPrintWithAnsiColors(json, indentLevel = 1, ansi = ansi)
+        else ansi
+
       case (ct, Some(StringBody(content, encoding, contentType))) if content != null =>
         ansi.a(content)
+
       case (ct, Some(other)) if other != null =>
         ansi.a(other.toString())
+
       case _ =>
         ansi
     }
